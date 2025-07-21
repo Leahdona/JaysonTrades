@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trades - TradeTracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+  <header>
+    <h1><i data-feather="trending-up"></i> Today's Trades</h1>
+  </header>
+  <div class="dollar-container" id="dollar-container"></div>
+<script>
+  const container = document.getElementById("dollar-container");
+  const total = 60; // Number of dollar signs on screen
+
+  for (let i = 0; i < total; i++) {
+    const dollar = document.createElement("div");
+    dollar.className = "dollar";
+    dollar.textContent = "$";
+    dollar.style.left = Math.random() * 100 + "vw";
+    dollar.style.animationDelay = Math.random() * 30 + "s";
+    dollar.style.fontSize = (20 + Math.random() * 20) + "px";
+    container.appendChild(dollar);
+  }
+</script>
+
+
+  <main>
+    <section>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Symbol</th>
+            <th>Buy/Sell</th>
+            <th>P/L (USD)</th>
+            <th>Reason</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+        <tbody id="trade-table-body">
+          <!-- Trade Slot 1 -->
+          <tr>
+            <td>1</td>
+            <td>
+              <select id="symbol-1">
+                <option value="">Select</option>
+                <option value="USDJPY">USDJPY</option>
+                <option value="GOLD">GOLD</option>
+                <option value="BITCOIN">BITCOIN</option>
+                <option value="ETH">ETH</option>
+                <option value="EURUSD">EURUSD</option>
+              </select>
+            </td>
+            <td>
+              <select id="type-1">
+                <option value="">Choose</option>
+                <option value="Buy">Buy</option>
+                <option value="Sell">Sell</option>
+              </select>
+            </td>
+            <td><input type="number" id="pl-1" placeholder="Profit/Loss" /></td>
+            <td><input type="text" id="reason-1" placeholder="Why Buy/Sell?" /></td>
+            <td>
+              <button id="add-btn-1" onclick="addTrade(1)">Add Trade</button>
+              <button id="edit-btn-1" onclick="editTrade(1)" style="display: none;">Edit</button>
+            </td>
+          </tr>
+
+          <!-- Trade Slot 2 -->
+          <tr>
+            <td>2</td>
+            <td>
+              <select id="symbol-2">
+                <option value="">Select</option>
+                <option value="USDJPY">USDJPY</option>
+                <option value="GOLD">GOLD</option>
+                <option value="BITCOIN">BITCOIN</option>
+                <option value="ETH">ETH</option>
+                <option value="EURUSD">EURUSD</option>
+              </select>
+            </td>
+            <td>
+              <select id="type-2">
+                <option value="">Choose</option>
+                <option value="Buy">Buy</option>
+                <option value="Sell">Sell</option>
+              </select>
+            </td>
+            <td><input type="number" id="pl-2" placeholder="Profit/Loss" /></td>
+            <td><input type="text" id="reason-2" placeholder="Why Buy/Sell?" /></td>
+            <td>
+              <button id="add-btn-2" onclick="addTrade(2)">Add Trade</button>
+              <button id="edit-btn-2" onclick="editTrade(2)" style="display: none;">Edit</button>
+            </td>
+          </tr>
+
+          <!-- Trade Slot 3 -->
+          <tr>
+            <td>3</td>
+            <td>
+              <select id="symbol-3">
+                <option value="">Select</option>
+                <option value="USDJPY">USDJPY</option>
+                <option value="GOLD">GOLD</option>
+                <option value="BITCOIN">BITCOIN</option>
+                <option value="ETH">ETH</option>
+                <option value="EURUSD">EURUSD</option>
+              </select>
+            </td>
+            <td>
+              <select id="type-3">
+                <option value="">Choose</option>
+                <option value="Buy">Buy</option>
+                <option value="Sell">Sell</option>
+              </select>
+            </td>
+            <td><input type="number" id="pl-3" placeholder="Profit/Loss" /></td>
+            <td><input type="text" id="reason-3" placeholder="Why Buy/Sell?" /></td>
+            <td>
+              <button id="add-btn-3" onclick="addTrade(3)">Add Trade</button>
+              <button id="edit-btn-3" onclick="editTrade(3)" style="display: none;">Edit</button>
+            </td>
+          </tr>
+
+          <!-- Trade Slot 4 -->
+          <tr>
+            <td>4</td>
+            <td>
+              <select id="symbol-4">
+                <option value="">Select</option>
+                <option value="USDJPY">USDJPY</option>
+                <option value="GOLD">GOLD</option>
+                <option value="BITCOIN">BITCOIN</option>
+                <option value="ETH">ETH</option>
+                <option value="EURUSD">EURUSD</option>
+              </select>
+            </td>
+            <td>
+              <select id="type-4">
+                <option value="">Choose</option>
+                <option value="Buy">Buy</option>
+                <option value="Sell">Sell</option>
+              </select>
+            </td>
+            <td><input type="number" id="pl-4" placeholder="Profit/Loss" /></td>
+            <td><input type="text" id="reason-4" placeholder="Why Buy/Sell?" /></td>
+            <td>
+              <button id="add-btn-4" onclick="addTrade(4)">Add Trade</button>
+              <button id="edit-btn-4" onclick="editTrade(4)" style="display: none;">Edit</button>
+            </td>
+          </tr>
+
+          <!-- Trade Slot 5 -->
+          <tr>
+            <td>5</td>
+            <td>
+              <select id="symbol-5">
+                <option value="">Select</option>
+                <option value="USDJPY">USDJPY</option>
+                <option value="GOLD">GOLD</option>
+                <option value="BITCOIN">BITCOIN</option>
+                <option value="ETH">ETH</option>
+                <option value="EURUSD">EURUSD</option>
+              </select>
+            </td>
+            <td>
+              <select id="type-5">
+                <option value="">Choose</option>
+                <option value="Buy">Buy</option>
+                <option value="Sell">Sell</option>
+              </select>
+            </td>
+            <td><input type="number" id="pl-5" placeholder="Profit/Loss" /></td>
+            <td><input type="text" id="reason-5" placeholder="Why Buy/Sell?" /></td>
+            <td>
+              <button id="add-btn-5" onclick="addTrade(5)">Add Trade</button>
+              <button id="edit-btn-5" onclick="editTrade(5)" style="display: none;">Edit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <div class="bottom-nav">
+    <a href="index.html"><i data-feather="home"></i><span>Dashboard</span></a>
+    <a href="trades.html"><i data-feather="trending-up"></i><span>Trades</span></a>
+    <a href="weekly.html"><i data-feather="calendar"></i><span>Weekly</span></a>
+    <a href="withdraw.html"><i data-feather="credit-card"></i><span>Withdraw</span></a>
+    <a href="deposit.html"><i data-feather="plus-circle"></i><span>Deposit</span></a>
+  </div>
+<script src="trades.js"></script>
+  <script>feather.replace();</script>
+</body>
+</html>

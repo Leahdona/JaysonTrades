@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TradeTracker - Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- PWA Manifest Link -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#4f8ef7" />
+</head>
+<script src="https://unpkg.com/feather-icons"></script>
+
+<body>
+  <header>
+    <h1>Jayson Trade Tracker</h1>
+  </header>
+
+  <div class="dollar-container" id="dollar-container"></div>
+
+  <script>
+    const container = document.getElementById("dollar-container");
+    const total = 60; // Number of dollar signs on screen
+
+    for (let i = 0; i < total; i++) {
+      const dollar = document.createElement("div");
+      dollar.className = "dollar";
+      dollar.textContent = "$";
+      dollar.style.left = Math.random() * 100 + "vw";
+      dollar.style.animationDelay = Math.random() * 30 + "s";
+      dollar.style.fontSize = (20 + Math.random() * 20) + "px";
+      container.appendChild(dollar);
+    }
+  </script>
+
+  <main>
+    <section class="balance">
+      <h2>Balance</h2>
+      <p><strong>$<span id="usd-balance">19.00</span></strong> USD</p>
+      <p><span id="kes-balance">KES 2,470.00</span></p>
+    </section>
+
+    <section class="daily-target">
+      <h2>Today's Target</h2>
+      <p><strong>$<span id="daily-target">0.00</span></strong> USD</p>
+    </section>
+  </main>
+
+  <div class="bottom-nav">
+    <a href="index.html">
+      <i data-feather="home"></i>
+      <span>Dashboard</span>
+    </a>
+    <a href="trades.html">
+      <i data-feather="trending-up"></i>
+      <span>Trades</span>
+    </a>
+    <a href="weekly.html">
+      <i data-feather="calendar"></i>
+      <span>Weekly</span>
+    </a>
+    <a href="withdraw.html">
+      <i data-feather="credit-card"></i>
+      <span>Withdraw</span>
+    </a>
+    <a href="deposit.html">
+      <i data-feather="plus-circle"></i>
+      <span>Deposit</span>
+    </a>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    feather.replace(); // Load all icons
+
+    // Register Service Worker for offline capabilities
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+        console.log('Service Worker registered with scope:', registration.scope);
+      }).catch(function(error) {
+        console.log('Service Worker registration failed:', error);
+      });
+    }
+  </script>
+</body>
+</html>

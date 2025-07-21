@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Withdraw - TradeTracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+  <header>
+    <h1><i data-feather="credit-card"></i> Withdraw Funds</h1>
+  </header>
+
+  <div class="dollar-container" id="dollar-container"></div>
+<script>
+  const container = document.getElementById("dollar-container");
+  const total = 60; // Number of dollar signs on screen
+
+  for (let i = 0; i < total; i++) {
+    const dollar = document.createElement("div");
+    dollar.className = "dollar";
+    dollar.textContent = "$";
+    dollar.style.left = Math.random() * 100 + "vw";
+    dollar.style.animationDelay = Math.random() * 30 + "s";
+    dollar.style.fontSize = (20 + Math.random() * 20) + "px";
+    container.appendChild(dollar);
+  }
+</script>
+
+  <main>
+    <section class="balance">
+      <h2>Current Balance</h2>
+      <p><strong>$<span id="usd-balance">0.00</span></strong> USD</p>
+      <p><span id="kes-balance">KES 0.00</span></p>
+    </section>
+
+    <section class="form-section">
+      <h2>Withdraw Amount</h2>
+      <input type="number" id="withdraw-amount" placeholder="Enter amount in USD" />
+      <button onclick="withdraw()">Withdraw</button>
+    </section>
+  </main>
+
+  <!-- Bottom Nav -->
+<div class="bottom-nav">
+  <a href="index.html">
+    <i data-feather="home"></i>
+    <span>Dashboard</span>
+  </a>
+  <a href="trades.html">
+    <i data-feather="trending-up"></i>
+    <span>Trades</span>
+  </a>
+  <a href="weekly.html">
+    <i data-feather="calendar"></i>
+    <span>Weekly</span>
+  </a>
+  <a href="withdraw.html">
+    <i data-feather="credit-card"></i>
+    <span>Withdraw</span>
+  </a>
+  <a href="deposit.html">
+    <i data-feather="plus-circle"></i>
+    <span>Deposit</span>
+  </a>
+</div>
+
+  <script src="script.js"></script>
+  <script>
+    updateBalanceDisplay();
+
+    function withdraw() {
+      const input = document.getElementById("withdraw-amount");
+      const amount = parseFloat(input.value);
+
+      if (isNaN(amount) || amount <= 0) {
+        alert("Enter a valid withdrawal amount.");
+        return;
+      }
+
+      const current = getBalance();
+      if (amount > current) {
+        alert("Insufficient balance.");
+        return;
+      }
+
+      const newBalance = current - amount;
+      setBalance(newBalance);
+      input.value = "";
+    }
+
+    feather.replace();
+  </script>
+</body>
+</html>

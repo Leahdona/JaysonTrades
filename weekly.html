@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weekly Summary - TradeTracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1><i data-feather="calendar"></i> Weekly Summary</h1>
+  </header>
+
+  <div class="dollar-container" id="dollar-container"></div>
+<script>
+  const container = document.getElementById("dollar-container");
+  const total = 60; // Number of dollar signs on screen
+
+  for (let i = 0; i < total; i++) {
+    const dollar = document.createElement("div");
+    dollar.className = "dollar";
+    dollar.textContent = "$";
+    dollar.style.left = Math.random() * 100 + "vw";
+    dollar.style.animationDelay = Math.random() * 30 + "s";
+    dollar.style.fontSize = (20 + Math.random() * 20) + "px";
+    container.appendChild(dollar);
+  }
+</script>
+
+  <main>
+    <section class="balance">
+      <label for="week-select"><strong>Select Week:</strong></label>
+      <select id="week-select">
+        <!-- Week 1–13 -->
+        <script>
+          for (let i = 1; i <= 13; i++) {
+            document.write(`<option value="${i}">Week ${i}</option>`);
+          }
+        </script>
+      </select>
+    </section>
+
+    <section class="weekly-summary">
+      <h2><i data-feather="trending-up"></i> Week <span id="week-label">1</span> Summary</h2>
+
+      <div id="weekly-table-body" class="week-days-container">
+        <!-- Filled by JS -->
+      </div>
+
+      <table>
+        <tfoot>
+          <tr>
+            <td><strong>Total Target</strong></td>
+            <td colspan="2"><strong id="weekly-target-total">$0.00</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Total Profit</strong></td>
+            <td colspan="2"><strong id="weekly-actual-total">$0.00</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Withdraw</strong></td>
+            <td colspan="2" id="weekly-withdraw">$0.00</td>
+          </tr>
+        </tfoot>
+      </table>
+    </section>
+  </main>
+
+  <div class="bottom-nav">
+    <a href="index.html"><i data-feather="home"></i><span>Dashboard</span></a>
+    <a href="trades.html"><i data-feather="trending-up"></i><span>Trades</span></a>
+    <a href="weekly.html"><i data-feather="calendar"></i><span>Weekly</span></a>
+    <a href="withdraw.html"><i data-feather="credit-card"></i><span>Withdraw</span></a>
+    <a href="deposit.html"><i data-feather="plus-circle"></i><span>Deposit</span></a>
+  </div>
+
+  <script src="weekly.js"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>
